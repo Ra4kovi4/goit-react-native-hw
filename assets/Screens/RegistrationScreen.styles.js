@@ -1,18 +1,18 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	wrapper: {
-		alignItems: "center",
-		justifyContent: "center",
 		backgroundColor: "#FFFFFF",
 		position: "relative",
-
+		width: "100%",
 		paddingTop: 92,
 		paddingBottom: 78,
+
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
 		textAlign: "center",
 	},
+
 	avatarWrapper: {
 		width: 120,
 		height: 120,
@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
 		width: "100%",
 		position: "relative",
 		marginBottom: 16,
+		marginRight: "6%",
+		marginLeft: "6%",
 	},
 	backroundImage: {
 		flex: 1,

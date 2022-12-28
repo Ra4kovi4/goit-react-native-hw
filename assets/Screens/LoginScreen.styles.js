@@ -2,12 +2,11 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	wrapper: {
-		alignItems: "center",
-		justifyContent: "center",
 		backgroundColor: "#FFFFFF",
 		position: "relative",
 		paddingTop: 32,
 		paddingBottom: 78,
+
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
 	},
@@ -16,6 +15,8 @@ const styles = StyleSheet.create({
 		width: "100%",
 		position: "relative",
 		marginBottom: 16,
+		marginRight: "6%",
+		marginLeft: "6%",
 	},
 
 	title: {

@@ -74,32 +74,36 @@ export const RegistrationScreen = () => {
 
 	return (
 		<TouchableWithoutFeedback onPress={keyboardHide}>
-			<View style={styles.wrapper}>
-				<View style={styles.avatarWrapper}>
-					{image ? (
-						<TouchableOpacity style={styles.addBtn} onPress={handleDelete}>
-							<DeletePhotoBtn style={{ zIndex: 999, fill: "#fff" }} />
-						</TouchableOpacity>
-					) : (
-						<TouchableOpacity style={styles.addBtn} onPress={pickImage}>
-							<AddPhotoBtn />
-						</TouchableOpacity>
-					)}
-					{image && (
-						<Image
-							source={{ uri: image }}
-							style={{ width: 120, height: 120, borderRadius: 16 }}
-						/>
-					)}
-				</View>
-				<Text style={styles.title}>Sign up</Text>
-				<KeyboardAvoidingView
-					behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""}>
+				<View
+					style={{
+						...styles.wrapper,
+						marginBottom: isKeyboardShow ? -190 : 0,
+					}}>
+					<View style={styles.avatarWrapper}>
+						{image ? (
+							<TouchableOpacity style={styles.addBtn} onPress={handleDelete}>
+								<DeletePhotoBtn style={{ zIndex: 999, fill: "#fff" }} />
+							</TouchableOpacity>
+						) : (
+							<TouchableOpacity style={styles.addBtn} onPress={pickImage}>
+								<AddPhotoBtn />
+							</TouchableOpacity>
+						)}
+						{image && (
+							<Image
+								source={{ uri: image }}
+								style={{ width: 120, height: 120, borderRadius: 16 }}
+							/>
+						)}
+					</View>
+					<Text style={styles.title}>Sign up</Text>
+
 					<View
-						style={{
-							...styles.formWrapper,
-							paddingBottom: isKeyboardShow ? 20 : 100,
-						}}>
+						style={
+							styles.formWrapper
+							// marginBottom: isKeyboardShow ? -150 : 0,
+						}>
 						<View style={styles.form}>
 							<TextInput
 								value={name}
@@ -110,7 +114,10 @@ export const RegistrationScreen = () => {
 									setInputNameFocus(true);
 									setIsKeyboardShow(true);
 								}}
-								onBlur={() => setInputNameFocus(false)}
+								onBlur={() => {
+									setInputNameFocus(false);
+									setIsKeyboardShow(false);
+								}}
 								style={
 									inputNameFocus
 										? { ...styles.input, borderColor: "#FF6C00" }
@@ -126,7 +133,10 @@ export const RegistrationScreen = () => {
 									setInputEmailFocus(true);
 									setIsKeyboardShow(true);
 								}}
-								onBlur={() => setInputEmailFocus(false)}
+								onBlur={() => {
+									setInputEmailFocus(false);
+									setIsKeyboardShow(false);
+								}}
 								style={
 									inputEmailFocus
 										? { ...styles.input, borderColor: "#FF6C00" }
@@ -150,7 +160,10 @@ export const RegistrationScreen = () => {
 										setInputPasswordFocus(true);
 										setIsKeyboardShow(true);
 									}}
-									onBlur={() => setInputPasswordFocus(false)}
+									onBlur={() => {
+										setInputPasswordFocus(false);
+										setIsKeyboardShow(false);
+									}}
 									style={
 										inputPasswordFocus
 											? { ...styles.input, borderColor: "#FF6C00" }
@@ -168,11 +181,14 @@ export const RegistrationScreen = () => {
 							</TouchableOpacity>
 						</View>
 					</View>
-				</KeyboardAvoidingView>
-				<TouchableOpacity activeOpacity={0.5}>
-					<Text style={styles.loginLink}>Already have an account? Log in</Text>
-				</TouchableOpacity>
-			</View>
+
+					<TouchableOpacity activeOpacity={0.5}>
+						<Text style={styles.loginLink}>
+							Already have an account? Log in
+						</Text>
+					</TouchableOpacity>
+				</View>
+			</KeyboardAvoidingView>
 		</TouchableWithoutFeedback>
 	);
 };
