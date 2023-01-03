@@ -57,11 +57,15 @@ export const RegistrationScreen = () => {
 
 	const handleSubmit = () => {
 		if (name !== "" && email !== "" && password !== "") {
+			console.log(
+				`Your login: ${name}, your email: ${email}, your password: ${password}`
+			);
 			Alert.alert(
 				"Credentials",
 				`Your login: ${name}, your email: ${email}, your password: ${password}`
 			);
 		} else {
+			console.log("Please, fill in all fields");
 			Alert.alert("Please, fill in all fields");
 			return;
 		}
@@ -128,6 +132,7 @@ export const RegistrationScreen = () => {
 								value={email}
 								placeholder='Email'
 								placeholderTextColor='#BDBDBD'
+								keyboardType='email-address'
 								onChangeText={handleChangeEmail}
 								onFocus={() => {
 									setInputEmailFocus(true);

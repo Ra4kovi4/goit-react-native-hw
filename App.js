@@ -9,16 +9,16 @@ import {
 	TouchableWithoutFeedback,
 	Keyboard,
 } from "react-native";
-import { RegistrationScreen } from "./assets/Screens/RegistrationScreen";
-import { LoginScreen } from "./assets/Screens/LoginScreen";
+import { RegistrationScreen } from "./assets/src/Screens/RegistrationScreen";
+import { LoginScreen } from "./assets/src//Screens/LoginScreen";
 import styles from "./StylesApp.styles";
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
 	const [fontsLoaded] = useFonts({
-		"Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-		"Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
-		"Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+		"Roboto-Regular": require("./assets/src/fonts/Roboto-Regular.ttf"),
+		"Roboto-Medium": require("./assets/src/fonts/Roboto-Medium.ttf"),
+		"Roboto-Bold": require("./assets/src/fonts/Roboto-Bold.ttf"),
 	});
 
 	const onLayoutRootView = useCallback(async () => {
@@ -34,7 +34,7 @@ export default function App() {
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<View style={styles.container} onLayout={onLayoutRootView}>
 				<ImageBackground
-					source={require("./assets/images/bg.png")}
+					source={require("./assets/src/images/bg.png")}
 					style={styles.backroundImage}>
 					<RegistrationScreen />
 
