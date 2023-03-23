@@ -1,46 +1,49 @@
-import { useCallback } from "react";
-
-import { useFonts } from "expo-font";
+import "expo-dev-menu";
 import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
+import { StyleSheet } from "react-native";
+import { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
 
-import {
-	View,
-	ImageBackground,
-	TouchableWithoutFeedback,
-	Keyboard,
-} from "react-native";
-import { RegistrationScreen } from "./assets/src/Screens/RegistrationScreen";
-import { LoginScreen } from "./assets/src//Screens/LoginScreen";
-import styles from "./StylesApp.styles";
+import Navigation from "./src/Navigation/Navigation";
 
-SplashScreen.preventAutoHideAsync();
 export default function App() {
-	const [fontsLoaded] = useFonts({
-		"Roboto-Regular": require("./assets/src/fonts/Roboto-Regular.ttf"),
-		"Roboto-Medium": require("./assets/src/fonts/Roboto-Medium.ttf"),
-		"Roboto-Bold": require("./assets/src/fonts/Roboto-Bold.ttf"),
-	});
+	const [isReady, setIsReady] = useState(false);
 
-	const onLayoutRootView = useCallback(async () => {
-		if (fontsLoaded) {
-			await SplashScreen.hideAsync();
+	const loadFonts = async () => {
+		try {
+			await Font.loadAsync({
+				"Roboto-Regular": require("./src/fonts/Roboto-Regular.ttf"),
+				"Roboto-Medium": require("./src/fonts/Roboto-Medium.ttf"),
+				"Roboto-Bold": require("./src/fonts/Roboto-Bold.ttf"),
+			});
+		} catch (error) {
+			console.warn(error);
+		} finally {
+			SplashScreen.hideAsync();
+			setIsReady(true);
 		}
-	}, [fontsLoaded]);
+	};
 
-	if (!fontsLoaded) {
-		return null;
-	}
+	useEffect(() => {
+		SplashScreen.preventAutoHideAsync();
+		loadFonts();
+	}, []);
+
+	if (!isReady) return null;
+
 	return (
-		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<View style={styles.container} onLayout={onLayoutRootView}>
-				<ImageBackground
-					source={require("./assets/src/images/bg.png")}
-					style={styles.backroundImage}>
-					<RegistrationScreen />
-
-					{/* <LoginScreen /> */}
-				</ImageBackground>
-			</View>
-		</TouchableWithoutFeedback>
+		<NavigationContainer>
+			<Navigation />
+		</NavigationContainer>
 	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+		color: "#bacbb1",
+	},
+});

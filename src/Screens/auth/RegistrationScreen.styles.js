@@ -1,24 +1,53 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	wrapper: {
 		backgroundColor: "#FFFFFF",
 		position: "relative",
-		paddingTop: 32,
+		width: "100%",
+		paddingTop: 92,
 		paddingBottom: 78,
 
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
+		textAlign: "center",
 	},
 
+	avatarWrapper: {
+		width: 120,
+		height: 120,
+		borderRadius: 16,
+		position: "absolute",
+		top: -60,
+		left: "33%",
+		backgroundColor: "#F6F6F6",
+	},
+	avatar: {
+		width: "100%",
+		zIndex: 100,
+	},
+	addBtn: {
+		position: "absolute",
+
+		left: 102,
+		bottom: 22,
+		width: 25,
+		height: 25,
+		zIndex: 999,
+	},
 	formWrapper: {
 		width: "100%",
 		position: "relative",
 		marginBottom: 16,
-		marginRight: "6%",
-		marginLeft: "6%",
+		alignItems: "center",
+		justifyContent: "center",
 	},
-
+	backroundImage: {
+		flex: 1,
+		width: "100%",
+		justifyContent: "flex-end",
+		resizeMode: "cover",
+	},
 	title: {
 		fontSize: 30,
 		marginBottom: 32,
@@ -84,6 +113,12 @@ const styles = StyleSheet.create({
 		fontFamily: "Roboto-Regular",
 		fontSize: 16,
 		color: "#1B4371",
+	},
+	backroundImage: {
+		flex: 1,
+		width: "100%",
+		justifyContent: "flex-end",
+		resizeMode: "cover",
 	},
 });
 
