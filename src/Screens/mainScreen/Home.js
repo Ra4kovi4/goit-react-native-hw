@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -17,26 +18,10 @@ export default function Home({ navigation }) {
 		<MainTab.Navigator
 			screenOptions={{
 				tabBarShowLabel: false,
-				headerRight: () => (
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "flex-end",
-							paddingRight: 10,
-							width: 120,
-						}}>
-						<TouchableOpacity onPress={() => navigation.navigate("Login")}>
-							<MaterialIcons
-								name='logout'
-								size={24}
-								color='rgba(189, 189, 189, 1)'
-							/>
-						</TouchableOpacity>
-					</View>
-				),
 			}}>
 			<MainTab.Screen
 				options={{
+					headerShown: false,
 					tabBarIcon: ({ focused, size, color }) =>
 						!focused ? (
 							<View
@@ -70,7 +55,7 @@ export default function Home({ navigation }) {
 							</View>
 						),
 				}}
-				name='Posts'
+				name='PostsScreen'
 				component={PostsScreen}
 			/>
 			<MainTab.Screen
@@ -109,6 +94,23 @@ export default function Home({ navigation }) {
 			/>
 			<MainTab.Screen
 				options={{
+					headerRight: () => (
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "flex-end",
+								paddingRight: 10,
+								width: 120,
+							}}>
+							<TouchableOpacity onPress={() => navigation.navigate("Login")}>
+								<MaterialIcons
+									name='logout'
+									size={24}
+									color='rgba(189, 189, 189, 1)'
+								/>
+							</TouchableOpacity>
+						</View>
+					),
 					tabBarIcon: ({ focused, size, color }) =>
 						!focused ? (
 							<View
